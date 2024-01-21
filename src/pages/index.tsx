@@ -1,6 +1,6 @@
 import Layout from "@/layouts";
 import Head from "next/head";
-import { Card } from "@/components";
+import { OldCard } from "@/components";
 import Link from "next/link";
 
 
@@ -17,14 +17,14 @@ export default function Home() {
             <title>{'Halaman Index'}</title>
           </Head>
 
-          <Card>
+          <OldCard>
             <Link passHref href={'/weather/register'} className={`mb-3 text-2xl font-semibold`}>
               Silahkan register dahulu {' '}
               <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
                 -&gt;
               </span>
             </Link>
-          </Card>
+          </OldCard>
         </section>
       </Layout>
     </main>  
