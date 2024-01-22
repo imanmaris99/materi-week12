@@ -16,6 +16,7 @@ interface LocationData {
   localtime: number;
   name: string;
   country: string;
+  tz_id:string;
 }
 
 interface ConditionData5 {
@@ -123,7 +124,8 @@ const WeatherFinder = () => {
           <section className='backdrop-blur-xl bg-sky-100/[.9] rounded-b-xl p-10'>
             {data.map((item, index) => (
                 <section key={index} className="flex flex-wrap flex-col items-center">
-                    <h2 className='font-bold text-xl text-slate-500 pb-2'>{item.location.country}</h2>
+                    <h2 className='font-bold text-2xl text-slate-500 pb-2'>{item.location.country}</h2>
+                    <h3 className='font-bold text-l text-slate-500 pb-2'>{item.location.tz_id}</h3>
                     <p>{item.location.localtime}</p>
 
                     <img
