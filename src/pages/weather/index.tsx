@@ -85,19 +85,19 @@ const Weather = ({ data, setData }: { data: AppData[]; setData: React.Dispatch<R
   return (
     <main className={`bg-sky-50/[.9] rounded-b-xl flex min-h-screen flex-col items-center justify-center`}>
       <Layout>
-        <OldCard>
-          <section className="w-full pt-10 backdrop-blur-xl bg-sky-100/[.9] text-black flex flex-row justify-center gap-1">
+        <OldCard direction="column">
+          <section className="w-full p-5 backdrop-blur-xl bg-sky-100/[.9] text-black flex flex-row justify-center item-center">
             <input
               type="text"
-              className="cityInput pl-2"
+              className="cityInput rounded-l-2xl pl-3 pt-2 pb-2"
               placeholder="Search Location"
               ref={searchRef} />
-            <div className="search-icon" onClick={onSearch}>
+            <div className="search-icon bg-sky-50/[.9] rounded-r-2xl pl-2 pr-2 pt-2 pb-2" onClick={onSearch}>
               <Image className="h-7 w-7" src={search_icon} alt="search logo" />
             </div>
           </section>
 
-          <section className='backdrop-blur-xl bg-sky-100/[.9] rounded-xl p-10'>
+          <section className='backdrop-blur-xl bg-sky-100/[.9] rounded-b-xl p-10'>
             {data.map((item, index) => (
               <section key={index} className="flex flex-wrap flex-col items-center">
                 <h2 className='font-bold text-xl text-slate-500'>{item.location.country}</h2>
