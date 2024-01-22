@@ -73,10 +73,17 @@ const WeatherFinder = () => {
   const onSearch = async () => {
     try {
       const location = searchRef?.current?.value || "Indonesia";
+      console.log (location);
+      
       const response = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=6cd366cb3d634eb8b0c21922241201&q=${location}&days=7`);
       const newData: AppData[] = [response.data];
       setData(newData);
       console.log(newData);
+
+      // Reset the search input field
+      if (searchRef.current) {
+        searchRef.current.value = "";
+      }
 
     } catch (error) {
       console.error('Error during search:', error);
@@ -124,12 +131,10 @@ const WeatherFinder = () => {
                     src={item.current.condition.icon}
                     alt="logo cuaca"
                     />
+                        
+                    <p className='flex justify-center text-2xl pb-2 items-center'><Image className='h-8 w-auto' src={suhu_max} alt="logo suhu udara" /> {item.current.temp_c+"°C"}</p>
 
-                    <div className='flex flex-col gap-2 p-2 justify-center items-center '>
-                        <p className='flex justify-center text-l items-center'><Image className='h-8 w-auto' src={suhu_max} alt="logo suhu udara" /> {item.current.temp_c+"°C"}</p>
-                    </div>
-
-                    <p className="description">{item.current.condition.text}</p>
+                    <p className="description">{"Condition :"+ item.current.condition.text}</p>
 
                 </section>
             ))}
