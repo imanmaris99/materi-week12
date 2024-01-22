@@ -28,7 +28,7 @@ import Register from "../weather/register";
         >
           <Layout>
             <OldCard direction="column">
-            <section className="w-full p-5 backdrop-blur-xl bg-sky-100/[.9] text-black flex flex-row justify-center item-center">
+            <section className="w-full p-5 backdrop-blur-xl bg-sky-100/[.9] text-black flex flex-row justify-center item-center hover:bg-gray-700 hover:text-white rounded-lg">
                 <h2 className="w-full p-5 text-3xl bg-sky-100/[.9] text-black flex justify-center rounded-md">
                   {'Halaman Pokemon Post'}
                   <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
@@ -58,10 +58,13 @@ import Register from "../weather/register";
     }
 
     return (
-      <div>
-        <Register/>
-      </div>
-    )          // Navigate to the desired route upon successful login
+      <OldCard direction="row" justifyContent="center">
+        <button className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg m-2 px-3 py-2 text-2xl font-medium" type="button" onClick={() => router.push('/weather/register')}>
+          Register dulu untuk dapat token !!!
+        </button>
+      </OldCard>
+
+    )      // Navigate to the desired route upon successful login
  
 
   };
