@@ -1,7 +1,6 @@
 import { OldCard } from "@/components";
 import Layout from "@/layouts";
 import { useRouter } from "next/router";
-import Register from "../weather/register";
 
   interface Resulted {
     name: string;
