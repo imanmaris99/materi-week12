@@ -52,7 +52,7 @@ import Layout from "@/layouts";
   };
   
   export const getServerSideProps = async () => {
-    const responseKedua = await fetch('https://pokeapi.co/api/v2/pokemon?limit=15');
+    const responseKedua = await fetch('https://pokeapi.co/api/v2/pokemon?limit=25');
     const timedata: ListPokemon = await responseKedua.json();
     
     console.log (responseKedua);
