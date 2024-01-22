@@ -116,7 +116,7 @@ const WeatherFinder = () => {
           <section className='backdrop-blur-xl bg-sky-100/[.9] rounded-b-xl p-10'>
             {data.map((item, index) => (
                 <section key={index} className="flex flex-wrap flex-col items-center">
-                    <h2 className='font-bold text-xl text-slate-500'>{item.location.country}</h2>
+                    <h2 className='font-bold text-xl text-slate-500 pb-2'>{item.location.country}</h2>
                     <p>{item.location.localtime}</p>
 
                     <img
@@ -124,6 +124,11 @@ const WeatherFinder = () => {
                     src={item.current.condition.icon}
                     alt="logo cuaca"
                     />
+
+                    <div className='flex flex-col gap-2 p-2 justify-center items-center '>
+                        <p className='flex justify-center text-l items-center'><Image className='h-8 w-auto' src={suhu_max} alt="logo suhu udara" /> {item.current.temp_c+"°C"}</p>
+                    </div>
+
                     <p className="description">{item.current.condition.text}</p>
 
                 </section>
@@ -134,24 +139,20 @@ const WeatherFinder = () => {
             {data.map((item, index) => (
 
                 <section key={index} className='flex flex-row gap-1 justify-center items-center '>
-                    <div className='flex flex-col gap-2 p-2 justify-center items-center '>
-                        <p className='flex flex-col justify-center text-xl items-center'><Image className='h-8 w-auto' src={suhu_max} alt="logo suhu udara" /> {item.current.temp_c+"°C"}</p>
-                        <p className='flex justify-center text-sm items-center'> {'Temperature °C'}</p>
-                    </div>
 
                     <div className='flex flex-col gap-2 p-2 justify-center items-center'>
-                        <p className='flex flex-col justify-center text-xl items-center'><Image className='h-8 w-auto' src={humidity_icon} alt="logo kelembaban udara" />{item.current.humidity+"%"}</p>
+                        <p className='flex flex-col justify-center text-l items-center'><Image className='h-8 w-auto' src={humidity_icon} alt="logo kelembaban udara" />{item.current.humidity+"%"}</p>
                         <p className='flex justify-center text-sm items-center'>{'Kelembapan %'}</p>
                     </div>
 
                     <div className='flex flex-col gap-2 p-2 justify-center items-center'>
-                        <p className='flex flex-col justify-center text-xl items-center'><Image className='h-8 w-auto' src={angin_icon} alt="logo kecepatan udara" />{item.current.wind_mph+"m/s"}</p>
+                        <p className='flex flex-col justify-center text-l items-center'><Image className='h-8 w-auto' src={angin_icon} alt="logo kecepatan udara" />{item.current.wind_mph+"m/s"}</p>
                         <p className='flex justify-center text-sm items-center'>{'Laju Angin m/s'}</p>
                     </div>
 
                     <div className='flex flex-col gap-2 p-2 justify-center items-center'>
-                        <p className='flex flex-col justify-center text-xl items-center'><Image className='h-8 w-auto' src={panas_icon} alt="logo kecepatan udara" />{item.current.pressure_mb+"hPa"}</p>
-                        <p className='flex justify-center text-sm items-center'>{'Tekanan m/s'}</p>
+                        <p className='flex flex-col justify-center text-l items-center'><Image className='h-8 w-auto' src={panas_icon} alt="logo kecepatan udara" />{item.current.pressure_mb+"hPa"}</p>
+                        <p className='flex justify-center text-sm items-center'>{'Tekanan hPa'}</p>
                     </div>
                 </section>
 
