@@ -31,17 +31,17 @@ import Layout from "@/layouts";
               </h2>
           </section>
 
-            <OldCard direction="column">
+            <section>
 
               {results.results.map((result, index) => (
                 
-                <section key={index} className="flex justify-center item-center backdrop-blur-xl bg-sky-100/[.9] p-5 ">
+                <section key={index} className="flex border mt-2 mb-2 border-sky-300 justify-center item-center flex-wrap backdrop-blur-xl bg-sky-100/[.9] p-5 ">
                   <p key={index}>{result.name}</p>
                   <p key={index}>{result.url}</p>               
                 </section>
 
               ))}
-            </OldCard>
+            </section>
 
             
           </OldCard>
