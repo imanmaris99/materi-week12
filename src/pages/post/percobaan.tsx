@@ -35,7 +35,7 @@ import Layout from "@/layouts";
 
               {results.results.map((result, index) => (
                 
-                <section key={index} className="flex justify-center item-center backdrop-blur-xl bg-sky-100/[.9] p-5">
+                <section key={index} className="flex justify-center item-center backdrop-blur-xl bg-sky-100/[.9] p-5 ">
                   <p key={index}>{result.name}</p>
                   <p key={index}>{result.url}</p>               
                 </section>
@@ -54,7 +54,8 @@ import Layout from "@/layouts";
   export const getServerSideProps = async () => {
     const responseKedua = await fetch('https://pokeapi.co/api/v2/pokemon?limit=15');
     const timedata: ListPokemon = await responseKedua.json();
-    console.log (timedata);
+    
+    console.log (responseKedua);
 
     return {
       props: {

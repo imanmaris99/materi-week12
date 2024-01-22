@@ -12,19 +12,19 @@ export default function Home() {
     className={`bg-sky-50/[.9] rounded-b-xl flex min-h-screen flex-col items-center justify-center`}
     >
       <Layout >
-        <section className={`bg-sky-100/[1] rounded-b-sm p-24`}>
+        <section className={`bg-sky-100/[1] rounded-b-sm p-20`}>
           <Head>
             <title>{'Halaman Index'}</title>
           </Head>
 
-          <OldCard>
-            <Link passHref href={'/weather/register'} className={`mb-3 text-2xl font-semibold`}>
-              Silahkan register dahulu {' '}
+
+            <Link passHref href={'/weather/register'} className={`mb-3 p-5 text-xl w-full font-semibold bg-sky-50/[.9] rounded-xl flex flex-col items-center justify-center hover:bg-sky-200/[.5]`}>
+               {'Silahkan register dahulu '}
               <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
                 -&gt;
               </span>
             </Link>
-          </OldCard>
+
         </section>
       </Layout>
     </main>  

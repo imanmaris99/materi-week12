@@ -1,3 +1,5 @@
+
+import { useState, useRef, useEffect } from "react";
 import Layout from "@/layouts";
 import { OldCard } from "@/components";
 import axios from 'axios';
@@ -6,7 +8,6 @@ import suhu_max from '../../components/Assets/suhumax.png';
 import humidity_icon from '../../components/Assets/humidity.png';
 import angin_icon from '../../components/Assets/angin.png';
 import Image from "next/image";
-import { useRef } from "react";
 
 interface LocationData {
   lat: number;
@@ -64,23 +65,37 @@ interface AppData {
   forecast: ForcaseData;
 }
 
-const Weather = ({ data, setData }: { data: AppData[]; setData: React.Dispatch<React.SetStateAction<AppData[]>> }) => {
+const WeatherFinder = () => {
+  const [data, setData] = useState<AppData[]>([]);
   const searchRef = useRef<HTMLInputElement | null>(null);
 
   const onSearch = async () => {
     try {
-      // Retrieve the value from the input field
       const location = searchRef?.current?.value || "Indonesia";
-      console.log(location);
-      // Perform the search or update the component state accordingly
       const response = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=6cd366cb3d634eb8b0c21922241201&q=${location}&days=7`);
       const newData: AppData[] = [response.data];
       setData(newData);
-      // Update your component state or do something with the new data
+      console.log(newData);
+      
     } catch (error) {
       console.error('Error during search:', error);
     }
   };
+
+  // useEffect to fetch initial data when the component mounts
+  useEffect(() => {
+    const defaultLocation = "Indonesia";
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=6cd366cb3d634eb8b0c21922241201&q=${defaultLocation}&days=7`);
+        const initialData: AppData[] = [response.data];
+        setData(initialData);
+      } catch (error) {
+        console.error('Error fetching initial data:', error);
+      }
+    };
+    fetchData();
+  }, []); // Empty dependency array ensures that this effect runs only once on mount
 
   return (
     <main className={`bg-sky-50/[.9] rounded-b-xl flex min-h-screen flex-col items-center justify-center`}>
@@ -93,7 +108,7 @@ const Weather = ({ data, setData }: { data: AppData[]; setData: React.Dispatch<R
               placeholder="Search Location"
               ref={searchRef} />
             <div className="search-icon bg-sky-50/[.9] rounded-r-2xl pl-2 pr-2 pt-2 pb-2" onClick={onSearch}>
-              <Image className="h-7 w-7" src={search_icon} alt="search logo" />
+              <Image className="h-7 w-7 cursor-pointer" src={search_icon} alt="search logo" />
             </div>
           </section>
 
@@ -137,28 +152,4 @@ const Weather = ({ data, setData }: { data: AppData[]; setData: React.Dispatch<R
   );
 };
 
-export async function getServerSideProps(context: any) {
-  try {
-    const api_key = "6cd366cb3d634eb8b0c21922241201";
-    const location = context.query.location || "Indonesia"; // Use the query parameter for location
-
-    const response = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${api_key}&q=${location}&days=7`);
-    const data: AppData[] = [response.data];
-
-    return {
-      props: {
-        data,
-      },
-    };
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    return {
-      props: {
-        data: [],
-        error: 'Failed to fetch weather data',
-      },
-    };
-  }
-}
-
-export default Weather;
+export default WeatherFinder;
