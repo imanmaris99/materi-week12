@@ -1,5 +1,7 @@
 import { OldCard } from "@/components";
 import Layout from "@/layouts";
+import { useRouter } from "next/router";
+import Register from "../weather/register";
 
   interface Resulted {
     name: string;
@@ -15,40 +17,53 @@ import Layout from "@/layouts";
   }
   
   const CobaPost = ({ results }: Props) => {
-    return (
-      
-      <main 
-      className={`bg-sky-50/[.9] rounded-b-xl flex min-h-screen flex-col items-center justify-center`}
-      >
-        <Layout>
-          <OldCard direction="column">
-          <section className="w-full p-5 backdrop-blur-xl bg-sky-100/[.9] text-black flex flex-row justify-center item-center">
-              <h2 className="w-full p-5 text-3xl bg-sky-100/[.9] text-black flex justify-center rounded-md">
-                {'Halaman Pokemon Post'}
-                <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-                  -&gt;
-                </span>
-              </h2>
-          </section>
+    const router = useRouter();
+    const token = localStorage.getItem("customToken");
+    if (token) {
 
-            <section>
-
-              {results.results.map((result, index) => (
-                
-                <section key={index} className="flex border mt-2 mb-2 border-sky-300 justify-center item-center flex-wrap backdrop-blur-xl bg-sky-100/[.9] p-5 ">
-                  <p key={index}>{result.name}</p>
-                  <p key={index}>{result.url}</p>               
-                </section>
-
-              ))}
+      return (
+        
+        <main 
+        className={`bg-sky-50/[.9] rounded-b-xl flex min-h-screen flex-col items-center justify-center`}
+        >
+          <Layout>
+            <OldCard direction="column">
+            <section className="w-full p-5 backdrop-blur-xl bg-sky-100/[.9] text-black flex flex-row justify-center item-center">
+                <h2 className="w-full p-5 text-3xl bg-sky-100/[.9] text-black flex justify-center rounded-md">
+                  {'Halaman Pokemon Post'}
+                  <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+                    -&gt;
+                  </span>
+                </h2>
             </section>
 
-            
-          </OldCard>
-        </Layout>
+              <section>
 
-      </main>
-    );
+                {results.results.map((result, index) => (
+                  
+                  <section key={index} className="flex border mt-2 mb-2 border-sky-300 justify-center item-center flex-wrap backdrop-blur-xl bg-sky-100/[.9] p-5 ">
+                    <p key={index}>{result.name}</p>
+                    <p key={index}>{result.url}</p>               
+                  </section>
+
+                ))}
+              </section>
+
+              
+            </OldCard>
+          </Layout>
+
+        </main>
+      );
+    }
+
+    return (
+      <div>
+        <Register/>
+      </div>
+    )          // Navigate to the desired route upon successful login
+ 
+
   };
   
   export const getServerSideProps = async () => {

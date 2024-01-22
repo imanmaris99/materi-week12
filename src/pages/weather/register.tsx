@@ -27,6 +27,7 @@ const Register = () => {
       // Customize this function to handle how you want to store the token
       // For example, you might use localStorage or a state management solution
       console.log('Token inserted:', token);
+      localStorage.setItem('customToken', token);
     };
 
     const forMik = useFormik<FormData>({
